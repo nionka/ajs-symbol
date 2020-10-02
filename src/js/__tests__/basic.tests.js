@@ -1,67 +1,42 @@
-import orderByProps from '../app';
+import showAttack from '../app';
 
-test('check sort function orderByProps', () => {
-  const obj = {
-    name: 'мечник',
-    health: 10,
-    level: 2,
-    attack: 80,
-    defence: 40,
+test('check function showAttack', () => {
+  const character = {
+    name: 'Лучник',
+    type: 'Bowman',
+    health: 50,
+    level: 3,
+    attack: 40,
+    defence: 10,
+    special: [
+      {
+        id: 8,
+        name: 'Двойной выстрел',
+        icon: 'http://...',
+        description: 'Двойной выстрел наносит двойной урон',
+      },
+      {
+        id: 9,
+        name: 'Нокаутирующий удар',
+        icon: 'http://...',
+      },
+    ],
   };
 
-  const keys = ['name', 'level'];
-
   const expected = [
-    { key: 'name', value: 'мечник' },
-    { key: 'level', value: 2 },
-    { key: 'attack', value: 80 },
-    { key: 'defence', value: 40 },
-    { key: 'health', value: 10 },
+    {
+      id: 8,
+      name: 'Двойной выстрел',
+      icon: 'http://...',
+      description: 'Двойной выстрел наносит двойной урон',
+    },
+    {
+      id: 9,
+      name: 'Нокаутирующий удар',
+      icon: 'http://...',
+      description: 'Описание недоступно',
+    },
   ];
 
-  expect(orderByProps(obj, keys)).toEqual(expected);
-});
-
-test('check sort function orderByProps', () => {
-  const obj = {
-    name: 'мечник',
-    health: 10,
-    level: 2,
-    attack: 80,
-    defence: 40,
-  };
-
-  const keys = ['attack', 'level', 'name'];
-
-  const expected = [
-    { key: 'attack', value: 80 },
-    { key: 'level', value: 2 },
-    { key: 'name', value: 'мечник' },
-    { key: 'defence', value: 40 },
-    { key: 'health', value: 10 },
-  ];
-
-  expect(orderByProps(obj, keys)).toEqual(expected);
-});
-
-test('check sort function orderByProps', () => {
-  const obj = {
-    name: 'мечник',
-    health: 10,
-    level: 2,
-    attack: 80,
-    defence: 40,
-  };
-
-  const keys = ['attack', 'defence'];
-
-  const expected = [
-    { key: 'attack', value: 80 },
-    { key: 'defence', value: 40 },
-    { key: 'health', value: 10 },
-    { key: 'level', value: 2 },
-    { key: 'name', value: 'мечник' },
-  ];
-
-  expect(orderByProps(obj, keys)).toEqual(expected);
+  expect(showAttack(character)).toEqual(expected);
 });
