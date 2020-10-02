@@ -1,13 +1,14 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-prototype-builtins */
 export default function showAttack(obj) {
   const { special } = obj;
 
-  special.forEach((elem) => {
-    if (!elem.hasOwnProperty('description')) {
-      elem.description = 'Описание недоступно';
-    }
+  const result = special.map((elem) => {
+    const {
+      id, name, icon, description = 'Описание недоступно',
+    } = elem;
+    return {
+      id, name, icon, description,
+    };
   });
 
-  return special;
+  return result;
 }
