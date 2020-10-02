@@ -1,36 +1,67 @@
-import showHealthStatus from '../app';
+import orderByProps from '../app';
 
-test('should health status', () => {
-  const healthStatus = showHealthStatus({ name: 'Маг', health: 90 });
-  const expexted = 'healthy';
+test('check sort function orderByProps', () => {
+  const obj = {
+    name: 'мечник',
+    health: 10,
+    level: 2,
+    attack: 80,
+    defence: 40,
+  };
 
-  expect(healthStatus).toBe(expexted);
+  const keys = ['name', 'level'];
+
+  const expected = [
+    { key: 'name', value: 'мечник' },
+    { key: 'level', value: 2 },
+    { key: 'attack', value: 80 },
+    { key: 'defence', value: 40 },
+    { key: 'health', value: 10 },
+  ];
+
+  expect(orderByProps(obj, keys)).toEqual(expected);
 });
 
-test('should health status', () => {
-  const healthStatus = showHealthStatus({ name: 'Маг', health: 51 });
-  const expexted = 'healthy';
+test('check sort function orderByProps', () => {
+  const obj = {
+    name: 'мечник',
+    health: 10,
+    level: 2,
+    attack: 80,
+    defence: 40,
+  };
 
-  expect(healthStatus).toBe(expexted);
+  const keys = ['attack', 'level', 'name'];
+
+  const expected = [
+    { key: 'attack', value: 80 },
+    { key: 'level', value: 2 },
+    { key: 'name', value: 'мечник' },
+    { key: 'defence', value: 40 },
+    { key: 'health', value: 10 },
+  ];
+
+  expect(orderByProps(obj, keys)).toEqual(expected);
 });
 
-test('should health status', () => {
-  const healthStatus = showHealthStatus({ name: 'Маг', health: 50 });
-  const expexted = 'wounded';
+test('check sort function orderByProps', () => {
+  const obj = {
+    name: 'мечник',
+    health: 10,
+    level: 2,
+    attack: 80,
+    defence: 40,
+  };
 
-  expect(healthStatus).toBe(expexted);
-});
+  const keys = ['attack', 'defence'];
 
-test('should health status', () => {
-  const healthStatus = showHealthStatus({ name: 'Маг', health: 15 });
-  const expexted = 'wounded';
+  const expected = [
+    { key: 'attack', value: 80 },
+    { key: 'defence', value: 40 },
+    { key: 'health', value: 10 },
+    { key: 'level', value: 2 },
+    { key: 'name', value: 'мечник' },
+  ];
 
-  expect(healthStatus).toBe(expexted);
-});
-
-test('should health status', () => {
-  const healthStatus = showHealthStatus({ name: 'Маг', health: 14 });
-  const expexted = 'critical';
-
-  expect(healthStatus).toBe(expexted);
+  expect(orderByProps(obj, keys)).toEqual(expected);
 });

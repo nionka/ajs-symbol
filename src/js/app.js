@@ -1,13 +1,30 @@
-export default function showHealthStatus(data) {
-  const { health } = data;
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+export default function orderByProps(obj, args) {
+  const result = [];
 
-  if (health > 50) {
-    return 'healthy';
+  for (const key in obj) {
+    result.push({ key, value: obj[key] });
   }
 
-  if (health < 15) {
-    return 'critical';
-  }
+  result.sort((a, b) => {
+    const iA = args.indexOf(a.key) + 1;
+    const iB = args.indexOf(b.key) + 1;
 
-  return 'wounded';
+    if (iA && iB) {
+      return iA - iB;
+    }
+
+    if (iA) {
+      return -1;
+    }
+
+    if (iB) {
+      return 1;
+    }
+
+    return a.key.localeCompare(b.key);
+  });
+
+  return result;
 }
