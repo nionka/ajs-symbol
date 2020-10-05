@@ -1,42 +1,48 @@
-import showAttack from '../app';
+/* eslint-disable no-unused-vars */
+import Validator from '../Validator';
 
-test('check function showAttack', () => {
-  const character = {
-    name: 'Лучник',
-    type: 'Bowman',
-    health: 50,
-    level: 3,
-    attack: 40,
-    defence: 10,
-    special: [
-      {
-        id: 8,
-        name: 'Двойной выстрел',
-        icon: 'http://...',
-        description: 'Двойной выстрел наносит двойной урон',
-      },
-      {
-        id: 9,
-        name: 'Нокаутирующий удар',
-        icon: 'http://...',
-      },
-    ],
-  };
+test('checking of the class Validator for name', () => {
+  function createValidator(name) {
+    const test = new Validator(name);
+    return test.name;
+  }
 
-  const expected = [
-    {
-      id: 8,
-      name: 'Двойной выстрел',
-      icon: 'http://...',
-      description: 'Двойной выстрел наносит двойной урон',
-    },
-    {
-      id: 9,
-      name: 'Нокаутирующий удар',
-      icon: 'http://...',
-      description: 'Описание недоступно',
-    },
-  ];
+  const expexted = 'Oleg11R';
 
-  expect(showAttack(character)).toEqual(expected);
+  expect(createValidator('Oleg11R')).toEqual(expexted);
+});
+
+test('checking of the class Validator for name', () => {
+  function createValidator(name) {
+    const test = new Validator(name);
+    return test.name;
+  }
+
+  const expexted = 'Irina-123_br';
+
+  expect(createValidator('Irina-123_br')).toEqual(expexted);
+});
+
+test('checking of the class Validator for name', () => {
+  function createValidator() {
+    const test = new Validator('Oleg:125');
+  }
+
+  expect(createValidator).toThrowError(new Error('Имя не подходит'));
+});
+
+test('checking of the class Validator for name', () => {
+  function createValidator() {
+    const test = new Validator('Oleg-1252');
+  }
+
+  expect(createValidator).toThrowError(new Error('Имя не подходит'));
+});
+
+test('checking of the class Validator for name', () => {
+  function createValidator() {
+    const test = new Validator('12Oleg-Pf');
+  }
+
+  expect(createValidator).toThrowError(new Error('Имя не подходит'));
 });
