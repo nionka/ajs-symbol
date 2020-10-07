@@ -1,48 +1,101 @@
-/* eslint-disable no-unused-vars */
-import Validator from '../Validator';
+import Team from '../Team';
 
-test('checking of the class Validator for name', () => {
-  function createValidator(name) {
-    const test = new Validator(name);
-    return test.name;
+test('check class Team', () => {
+  function checkTeam() {
+    const team = new Team();
+    const undead = {
+      name: 'Oleg', type: 'Undead', level: 1, health: 100, attack: 25, defence: 25,
+    };
+    const mag = {
+      name: 'Irina', type: 'Mag', level: 1, health: 100, attack: 40, defence: 10,
+    };
+
+    team.add(undead);
+    team.add(mag);
+
+    return team.toArray();
   }
 
-  const expexted = 'Oleg11R';
+  const expected = [
+    {
+      name: 'Oleg', type: 'Undead', level: 1, health: 100, attack: 25, defence: 25,
+    },
+    {
+      name: 'Irina', type: 'Mag', level: 1, health: 100, attack: 40, defence: 10,
+    },
+  ];
 
-  expect(createValidator('Oleg11R')).toEqual(expexted);
+  expect(checkTeam()).toEqual(expected);
 });
 
-test('checking of the class Validator for name', () => {
-  function createValidator(name) {
-    const test = new Validator(name);
-    return test.name;
+test('check class Team', () => {
+  function checkTeam() {
+    const team = new Team();
+    const undead = {
+      name: 'Oleg', type: 'Undead', level: 1, health: 100, attack: 25, defence: 25,
+    };
+    const mag = {
+      name: 'Irina', type: 'Mag', level: 1, health: 100, attack: 40, defence: 10,
+    };
+
+    team.addAll(undead, mag);
+
+    return team.toArray();
   }
 
-  const expexted = 'Irina-123_br';
+  const expected = [
+    {
+      name: 'Oleg', type: 'Undead', level: 1, health: 100, attack: 25, defence: 25,
+    },
+    {
+      name: 'Irina', type: 'Mag', level: 1, health: 100, attack: 40, defence: 10,
+    },
+  ];
 
-  expect(createValidator('Irina-123_br')).toEqual(expexted);
+  expect(checkTeam()).toEqual(expected);
 });
 
-test('checking of the class Validator for name', () => {
-  function createValidator() {
-    const test = new Validator('Oleg:125');
+test('check class Team', () => {
+  function checkTeam() {
+    const team = new Team();
+    const undead = {
+      name: 'Oleg', type: 'Undead', level: 1, health: 100, attack: 25, defence: 25,
+    };
+    const mag = {
+      name: 'Irina', type: 'Mag', level: 1, health: 100, attack: 40, defence: 10,
+    };
+
+    team.addAll(undead, mag, undead);
+
+    return team.toArray();
   }
 
-  expect(createValidator).toThrowError(new Error('Имя не подходит'));
+  const expected = [
+    {
+      name: 'Oleg', type: 'Undead', level: 1, health: 100, attack: 25, defence: 25,
+    },
+    {
+      name: 'Irina', type: 'Mag', level: 1, health: 100, attack: 40, defence: 10,
+    },
+  ];
+
+  expect(checkTeam()).toEqual(expected);
 });
 
-test('checking of the class Validator for name', () => {
-  function createValidator() {
-    const test = new Validator('Oleg-1252');
+test('check class Team', () => {
+  function checkTeam() {
+    const team = new Team();
+    const undead = {
+      name: 'Oleg', type: 'Undead', level: 1, health: 100, attack: 25, defence: 25,
+    };
+    const mag = {
+      name: 'Irina', type: 'Mag', level: 1, health: 100, attack: 40, defence: 10,
+    };
+
+    team.add(undead);
+    team.add(mag);
+    team.add(undead);
   }
 
-  expect(createValidator).toThrowError(new Error('Имя не подходит'));
-});
-
-test('checking of the class Validator for name', () => {
-  function createValidator() {
-    const test = new Validator('12Oleg-Pf');
-  }
-
-  expect(createValidator).toThrowError(new Error('Имя не подходит'));
+  expect(checkTeam).toThrowError(new Error('Такой персонаж уже есть в команде'));
 });

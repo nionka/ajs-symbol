@@ -1,1 +1,0 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/p37pkcxfnt1g3kg1?svg=true)](https://ci.appveyor.com/project/nionka/ajs-regex-1)
