@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/7uqlwqu51rus0o3u?svg=true)](https://ci.appveyor.com/project/nionka/ajs-symbol)
