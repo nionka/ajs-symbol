@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 export default class Team {
   constructor() {
     this.members = new Set();
@@ -21,21 +22,9 @@ export default class Team {
     return Array.from(this.members);
   }
 
-  [Symbol.iterator]() {
-    const command = this.toArray();
-    let counter = 0;
-    const last = command.length;
-
-    return {
-      next() {
-        if (counter < last) {
-          const char = command[counter];
-          counter += 1;
-          return { done: false, value: char };
-        }
-
-        return { done: true };
-      },
-    };
+  * [Symbol.iterator]() {
+    for (const char of this.members) {
+      yield char;
+    }
   }
 }
